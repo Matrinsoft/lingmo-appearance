@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.20)
+﻿cmake_minimum_required(VERSION 3.20)
 
 project(lingmo-appearance VERSION 1.0.0 DESCRIPTION "Lingmo Appearance Library" LANGUAGES CXX)
 
@@ -13,6 +13,7 @@ add_library(lingmo-appearance SHARED
     src/lingmocolor.cpp
     src/lingmotheme.cpp
 )
+target_compile_definitions(lingmo-appearance PRIVATE LINGMO_APPEARANCE_LIBRARY)
 
 target_include_directories(lingmo-appearance
     PUBLIC
@@ -25,12 +26,6 @@ target_link_libraries(lingmo-appearance
         Qt6::Core
         Qt6::Gui
         lingmo-base
-)
-
-include(GenerateExportHeader)
-generate_export_header(lingmo-appearance
-    EXPORT_MACRO_NAME LINGMO_APPEARANCE_EXPORT
-    EXPORT_FILE_NAME ${CMAKE_CURRENT_BINARY_DIR}/export.h
 )
 
 install(TARGETS lingmo-appearance
