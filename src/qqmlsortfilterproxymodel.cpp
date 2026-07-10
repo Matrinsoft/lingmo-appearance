@@ -71,35 +71,33 @@ void QQmlSortFilterProxyModel::setFilterRoleName(const QString &filterRoleName)
 
 QString QQmlSortFilterProxyModel::filterPattern() const
 {
-    return filterRegExp().pattern();
+    return filterRegularExpression().pattern();
 }
 
 void QQmlSortFilterProxyModel::setFilterPattern(const QString &filterPattern)
 {
-    QRegExp regExp = filterRegExp();
+    QRegularExpression regExp = filterRegularExpression();
     if (regExp.pattern() == filterPattern)
         return;
 
     regExp.setPattern(filterPattern);
-    QSortFilterProxyModel::setFilterRegExp(regExp);
+    QSortFilterProxyModel::setFilterRegularExpression(regExp);
     emit filterPatternChanged();
 }
 
 QQmlSortFilterProxyModel::PatternSyntax QQmlSortFilterProxyModel::filterPatternSyntax() const
 {
-    return static_cast<PatternSyntax>(filterRegExp().patternSyntax());
+    return static_cast<PatternSyntax>(0);
 }
 
 void QQmlSortFilterProxyModel::setFilterPatternSyntax(
     QQmlSortFilterProxyModel::PatternSyntax patternSyntax)
 {
-    QRegExp regExp = filterRegExp();
-    QRegExp::PatternSyntax patternSyntaxTmp = static_cast<QRegExp::PatternSyntax>(patternSyntax);
-    if (regExp.patternSyntax() == patternSyntaxTmp)
-        return;
-
-    regExp.setPatternSyntax(patternSyntaxTmp);
-    QSortFilterProxyModel::setFilterRegExp(regExp);
+    QRegularExpression regExp = filterRegularExpression();
+    if (patternSyntax == Wildcard) {
+        regExp.setPattern(QRegularExpression::wildcardToRegularExpression(regExp.pattern()));
+    }
+    QSortFilterProxyModel::setFilterRegularExpression(regExp);
     emit filterPatternSyntaxChanged();
 }
 

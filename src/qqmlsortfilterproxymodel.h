@@ -50,12 +50,12 @@ class QQmlSortFilterProxyModel : public QSortFilterProxyModel
 
 public:
     enum PatternSyntax {
-        RegExp = QRegExp::RegExp,
-        Wildcard = QRegExp::Wildcard,
-        FixedString = QRegExp::FixedString,
-        RegExp2 = QRegExp::RegExp2,
-        WildcardUnix = QRegExp::WildcardUnix,
-        W3CXmlSchema11 = QRegExp::W3CXmlSchema11
+        RegExp = 0,
+        Wildcard = 1,
+        FixedString = 2,
+        RegExp2 = 3,
+        WildcardUnix = 4,
+        W3CXmlSchema11 = 5
     };
     Q_ENUM(PatternSyntax)
 
