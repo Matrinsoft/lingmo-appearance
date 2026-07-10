@@ -1,4 +1,4 @@
-﻿Source: lingmo-appearance
+Source: lingmo-appearance
 Section: libs
 Priority: optional
 Maintainer: Lingmo OS Team <team@lingmo.org>
@@ -7,23 +7,18 @@ Build-Depends:
     debhelper-compat (= 13),
     pkg-config,
     qt6-base-dev (>= 6.5),
-    qt6-base-dev, lingmo-base-dev,
 Standards-Version: 4.6.2
 Homepage: https://github.com/Matrinsoft/lingmo-appearance
 Rules-Requires-Root: no
 
-Package: liblingmo-appearance1
+Package: liblingmoappearance1
 Architecture: any
-Depends:
-    ,
-    ,
-Description: Lingmo Appearance Library
- Lingmo Desktop Lingmo Appearance Library.
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: lingmo-appearance
+ Lingmo Desktop lingmo-appearance.
 
-Package: liblingmo-appearance-dev
+Package: liblingmoappearance-dev
 Architecture: any
-Depends:
-    liblingmo-appearance1 (= ),
-    ,
-Description: Lingmo Appearance Library - development files
+Depends: liblingmoappearance1 (= ${binary:Version}), ${misc:Depends}
+Description: lingmo-appearance - development files
  This package contains the development files.
